@@ -3,40 +3,26 @@ function buildMetadata(sample) {
   // @TODO: Complete the following function that builds the metadata panel
 
   // Use `d3.json` to fetch the metadata for a sample
-  // const metadata_url = "http://localhost:5000/metadata/940";
-  // d3.json(metadata_url).then(function(data) {
-  //   console.log(data);
-  // })
-
-    //const metadata = d3.json(metadata_url);
+  const metadata_url = "http://localhost:5000/metadata/940";
+  d3.json(metadata_url).then(function(data) {
+    console.log(data);
+  })
 
     // Use d3 to select the panel with id of `#sample-metadata`
-    // var sample_metadata = d3.select("#sample-metadata");
+    var sample_metadata = d3.select("#sample-metadata");
+
     // Use `.html("") to clear any existing metadata
     // d3.select("#sample-metadata").html("");
-    // sample_metadata.html("");
+    sample_metadata.html("");
 
     // Use `Object.entries` to add each key and value pair to the panel
     // Hint: Inside the loop, you will need to use d3 to append new
     // tags for each key-value in the metadata.
-    console.log("hello");
-    // Object.entries(metadata).forEach(function([key, value])
-    // {
-    //   var paragraph = sample_metadata.append("p");
-    //   paragraph.text(value)
-    //   console.log("hello");
-    //   console.log(value);
-    // }
-    // )
-
-    // metadata.forEach(function(sampler) {
-    //   var paragraph = sample_metadata.append("p");
-    //   Object.entries(sampler).forEach(function([key, value]) {
-    //     paragraph.append(value)
-    //   }
-
-    //   )
-    // })
+    Object.entries(metadata).forEach(function([key, value])
+    {
+      console.log("hello");
+    }
+    )
 
 
     // BONUS: Build the Gauge Chart
@@ -46,7 +32,6 @@ function buildMetadata(sample) {
 function buildCharts(sample) {
 
   // @TODO: Use `d3.json` to fetch the sample data for the plots
-console.log("build charts")
 
     // @TODO: Build a Bubble Chart using the sample data
 
@@ -70,11 +55,7 @@ function init() {
 
     // Use the first sample from the list to build the initial plots
     const firstSample = sampleNames[0];
-    console.log("Building charts");
-
     buildCharts(firstSample);
-    console.log("Building metadata");
-    
     buildMetadata(firstSample);
   });
 }
