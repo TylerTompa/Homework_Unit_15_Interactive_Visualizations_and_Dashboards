@@ -49,13 +49,45 @@ function buildCharts(sample) {
 
     d3.json(`/samples/${sample}`).then(
       d => {
-        console.log("Then'ed")
+        console.log("Then'ed it")
         console.log(d.otu_ids);
         console.log(d.otu_labels);
         console.log(d.sample_values);
+        console.log("Still then'ed");
+
+        var top_10_samples_otu_ids = d.otu_ids.slice(0, 10);
+        console.log("Please log this 1");
+        console.log(top_10_samples_otu_ids);
+        
+        var top_10_samples_otu_labels = d.otu_labels.slice(0, 10);
+        console.log("Please log this 2");
+        console.log(top_10_samples_otu_labels);
+
+        var top_10_samples_sample_values = d.sample_values.slice(0, 10);
+        console.log("Plese log this 3");
+        console.log(top_10_samples_sample_values);
+
+        var trace_pie = {
+          labels: top_10_samples_otu_labels,
+          values: top_10_samples_sample_values,
+          type: 'pie'
+        };
+        console.log("Maybe made trace");
+
+        var pie_data = [trace_pie];
+        console.log("Maybe made data");
+
+        layout_pie = {
+          title: "Pie Chart"
+        };
+        console.log("Maybe made layout");
+
+        Plotly.newPlot("pie", pie_data, layout_pie);
+        console.log("Maybe plotted");
+
     })
 
-    
+
 
 
 }
