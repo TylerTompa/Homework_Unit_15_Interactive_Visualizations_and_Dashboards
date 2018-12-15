@@ -41,7 +41,7 @@ function buildMetadata(sample) {
 
         Object.entries(d).forEach(function([key, value])
         {
-          console.log(`${key}: ${value}`);
+          // console.log(`${key}: ${value}`);
           var paragraph = sample_metadata.append("p");
           paragraph.text(`${key}: ${value}`);
 
@@ -75,9 +75,14 @@ function buildCharts(sample) {
       d => {
         console.log("Then'ed it charts");
         console.log(d.otu_ids);
-        console.log(d.otu_labels);
-        console.log(d.sample_values);
+        // console.log(d.otu_labels);
+        // console.log(d.sample_values);
         // console.log("Still then'ed");
+
+        var otu_ids = d.otu_ids;
+        console.log(otu_ids);
+        var otu_labels = d.otu_labels;
+        var sample_values = d.samples_values;
 
         // var top_10_samples_otu_ids = d.otu_ids.slice(0, 10);
         // console.log("Please log this 1");
@@ -87,9 +92,9 @@ function buildCharts(sample) {
         // console.log("Please log this 2");
         // console.log(top_10_samples_otu_labels);
 
-        var top_10_samples_sample_values = d.sample_values.slice(0, 10);
-        console.log("Plese log this 3");
-        console.log(top_10_samples_sample_values);
+        // var top_10_samples_sample_values = d.sample_values.slice(0, 10);
+        // console.log("Plese log this 3");
+        // console.log(top_10_samples_sample_values);
 
         var trace_pie = {
           // values: top_10_samples_sample_values,
@@ -131,13 +136,13 @@ function buildCharts(sample) {
         var trace_bubble = {
           x: d.otu_ids,
           y: d.sample_values,
-          mode: "markers+text",
-          text: d.otulabels,
+          mode: "markers",
           marker: {
             size: d.sample_values,
-            color: d.otu_ids
-          }
-          // test: otu_labels
+            color: d.otu_ids,
+            colorscale: "Earth"
+          },
+          text: d.otu_labels
         };
         console.log("Maybe made bubble trace")
     
