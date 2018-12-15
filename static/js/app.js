@@ -82,7 +82,7 @@ function buildCharts(sample) {
         var otu_ids = d.otu_ids;
         console.log(otu_ids);
         var otu_labels = d.otu_labels;
-        var sample_values = d.samples_values;
+        var sample_values = d.sample_values;
 
         // var top_10_samples_otu_ids = d.otu_ids.slice(0, 10);
         // console.log("Please log this 1");
@@ -98,10 +98,19 @@ function buildCharts(sample) {
 
         var trace_pie = {
           // values: top_10_samples_sample_values,
-          values: d.sample_values.slice(0, 10),
+          // values: d.sample_values.slice(0, 10),
+          // values: sample_values.slice(0,10).sort((first, second) => second - first),
+          values: sample_values.sort((first, second) => second - first).slice(0,10),
+          // values: sample_values.slice(0,10),
           // labels: top_10_samples_otu_labels,
-          labels: d.otu_ids.slice(0,10),
-          text: d.otu_labels,
+          // labels: d.otu_ids.slice(0,10),
+          labels: otu_ids.sort((first, second) => second - first).slice(0, 10),
+          // labels: otu_ids.slice(0, 10).sort((first, second) => second - first),
+          // labels: otu_ids.slice(0, 10),
+          // text: d.otu_labels,
+          // text: otu_labels.slice(0, 10).sort((first, second) => second - first),
+          // text: otu_labels.sort((first, second) => second - first).slice(0, 10),
+          // text: otu_labels.slice(0, 10),
           type: 'pie'
         };
         console.log("Maybe made trace pie");
