@@ -29,6 +29,28 @@ function buildMetadata(sample) {
     // buildGauge(data.WFREQ);
 
     console.log("Im inside buildMetadata")
+
+    d3.json(`/metadata/${sample}`).then(
+      d => {
+
+        console.log("Then'ed it metadata");
+        console.log(d);
+
+        var sample_metadata = d3.select("#sample-metadata");
+        sample_metadata.html("");
+
+        Object.entries(d).forEach(function([key, value])
+        {
+          console.log(`${key}: ${value}`);
+          var paragraph = sample_metadata.append("p");
+          paragraph.text(`${key}: ${value}`);
+
+        }
+        )
+
+      }
+    )
+
 }
 
 function buildCharts(sample) {
@@ -49,11 +71,11 @@ function buildCharts(sample) {
 
     d3.json(`/samples/${sample}`).then(
       d => {
-        console.log("Then'ed it")
+        console.log("Then'ed it charts");
         console.log(d.otu_ids);
         console.log(d.otu_labels);
         console.log(d.sample_values);
-        console.log("Still then'ed");
+        // console.log("Still then'ed");
 
         var top_10_samples_otu_ids = d.otu_ids.slice(0, 10);
         console.log("Please log this 1");
@@ -80,8 +102,8 @@ function buildCharts(sample) {
         var layout_pie = {
           title: "Pie Chart",
           legend: {
-            x: 1,
-            y: 1
+            x: 4,
+            y: 0.5
           }
         };
         console.log("maybe reposition legend");
