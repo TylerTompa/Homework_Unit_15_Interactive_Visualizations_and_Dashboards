@@ -45,6 +45,8 @@ function buildMetadata(sample) {
           var paragraph = sample_metadata.append("p");
           paragraph.text(`${key}: ${value}`);
 
+          // sample_metadata.selectAll("h6").data(Object.entries(d)).enter().append("h6").text(function(d) {return `${d[0]}: ${d[1]}`})
+
         }
         )
 
@@ -77,21 +79,24 @@ function buildCharts(sample) {
         console.log(d.sample_values);
         // console.log("Still then'ed");
 
-        var top_10_samples_otu_ids = d.otu_ids.slice(0, 10);
-        console.log("Please log this 1");
-        console.log(top_10_samples_otu_ids);
+        // var top_10_samples_otu_ids = d.otu_ids.slice(0, 10);
+        // console.log("Please log this 1");
+        // console.log(top_10_samples_otu_ids);
         
-        var top_10_samples_otu_labels = d.otu_labels.slice(0, 10);
-        console.log("Please log this 2");
-        console.log(top_10_samples_otu_labels);
+        // var top_10_samples_otu_labels = d.otu_labels.slice(0, 10);
+        // console.log("Please log this 2");
+        // console.log(top_10_samples_otu_labels);
 
         var top_10_samples_sample_values = d.sample_values.slice(0, 10);
         console.log("Plese log this 3");
         console.log(top_10_samples_sample_values);
 
         var trace_pie = {
-          labels: top_10_samples_otu_labels,
-          values: top_10_samples_sample_values,
+          // values: top_10_samples_sample_values,
+          values: d.sample_values.slice(0, 10),
+          // labels: top_10_samples_otu_labels,
+          labels: d.otu_ids.slice(0,10),
+          text: d.otu_labels,
           type: 'pie'
         };
         console.log("Maybe made trace pie");
@@ -101,10 +106,10 @@ function buildCharts(sample) {
 
         var layout_pie = {
           title: "Pie Chart",
-          legend: {
-            x: 4,
-            y: 0.5
-          }
+          // legend: {
+          //   x: 4,
+          //   y: 0.5
+          // }
         };
         console.log("maybe reposition legend");
 
@@ -126,7 +131,8 @@ function buildCharts(sample) {
         var trace_bubble = {
           x: d.otu_ids,
           y: d.sample_values,
-          mode: "markers",
+          mode: "markers+text",
+          text: d.otulabels,
           marker: {
             size: d.sample_values,
             color: d.otu_ids
