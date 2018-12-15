@@ -72,23 +72,57 @@ function buildCharts(sample) {
           values: top_10_samples_sample_values,
           type: 'pie'
         };
-        console.log("Maybe made trace");
+        console.log("Maybe made trace pie");
 
         var pie_data = [trace_pie];
-        console.log("Maybe made data");
+        console.log("Maybe made data pie");
 
-        layout_pie = {
-          title: "Pie Chart"
+        var layout_pie = {
+          title: "Pie Chart",
+          legend: {
+            x: 1,
+            y: 1
+          }
         };
-        console.log("Maybe made layout");
+        console.log("maybe reposition legend");
+
+        console.log("Maybe made layout pie");
 
         Plotly.newPlot("pie", pie_data, layout_pie);
-        console.log("Maybe plotted");
+        console.log("Maybe plotted pie");
+
+        // var trace_bubble = {
+        //   x: top_10_samples_otu_ids,
+        //   y: top_10_samples_sample_values,
+        //   mode: "markers",
+        //   marker: {
+        //     size: top_10_samples_sample_values,
+        //     color: top_10_samples_otu_ids
+        //   }
+        //   // test: otu_labels
+        // };
+        var trace_bubble = {
+          x: d.otu_ids,
+          y: d.sample_values,
+          mode: "markers",
+          marker: {
+            size: d.sample_values,
+            color: d.otu_ids
+          }
+          // test: otu_labels
+        };
+        console.log("Maybe made bubble trace")
+    
+        var bubble_data = [trace_bubble];
+        console.log("Maybe made bubble trace");
+    
+        var layout_bubble = {
+          title: "Bubble Chart"
+        }
+    
+        Plotly.newPlot("bubble", bubble_data, layout_bubble);
 
     })
-
-
-
 
 }
 
